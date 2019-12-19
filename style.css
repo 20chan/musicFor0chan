@@ -1,0 +1,70 @@
+.grey {
+    color: #999999;
+}
+
+body {
+    margin: 30px;
+    line-height: 18px;
+    background: #29283b;
+}
+
+body pre {
+    font-size: 13px;
+    font-family: 'Iosevka SS04 Web';
+}
+
+.oneliner pre {
+    display: inline-block;
+    overflow: hidden;
+}
+
+.container {
+    display: block;
+    overflow: hidden;
+    text-align: center;
+}
+
+.playerControls {
+    cursor: default;
+}
+.playerControls .active {
+    color: #65aef7;
+    cursor: pointer;
+}
+
+.playerControls .btn.active:hover,
+.playerControls .btn.selected {
+    background-color: #ef6487;
+    color: #00303e;
+}
+
+.musics {
+    cursor: default;
+}
+
+.musics .btn {
+    display: inline;
+    line-height: 18px;
+}
+
+.musics .btn.active {
+    color: #ef6487;
+    cursor: pointer;
+}
+
+.musics .btn.active:hover,
+.musics .btn.selected {
+    background-color: #65aef7;
+    color: #00303e;
+}
+
+.multi-column {
+    -webkit-columns: 3 80px;
+    -moz-columns: 3 80px;
+    columns: 3 80px;
+}
+
+.multi-column.musics {
+    max-width: 280px;
+    margin: 0px auto;
+}

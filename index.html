@@ -1,0 +1,88 @@
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>musicFor0chan</title>
+        <link rel="stylesheet" type="text/css" href="fonts/webfont.css">
+        <link rel="stylesheet" type="text/css" href="style.css">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <div class="container">
+            <div class="oneliner">
+                <div class="playerControls">
+                    <div id="music-player" style="display:none"></div>
+                    <pre class="grey" id="player_time">--:--:--</pre>
+                    <br>
+                    <pre class="grey btn active" id="player_playpause">[PLAY]</pre>
+                    <pre class="grey btn active" id="player_stop">[STOP]</pre>
+                    <pre class="grey btn active" id="player_rew">[-30s]</pre>
+                    <pre class="grey btn active selected" id="player_ffw">[+30s]</pre>
+                </div>
+            </div>
+                <div class="musics multi-column">
+                    <pre class="btn active" value="LV6fB1zo1Fs">Test song1</pre><br>
+                    <pre class="btn active" value="oitBJxR9UUE">Test song2</pre><br>
+                    <pre class="btn active" value="ITtUs0fKmPM">Test song3</pre><br>
+                    <pre class="btn active" value="ITtUs0fKmPM">Test song3</pre><br>
+                    <pre class="btn active" value="ITtUs0fKmPM">Test song3</pre><br>
+                    <pre class="btn active" value="ITtUs0fKmPM">Test song3</pre><br>
+                    <pre class="btn active" value="ITtUs0fKmPM">Test song3</pre><br>
+                    <pre class="btn active" value="ITtUs0fKmPM">Test song3</pre><br>
+                    <pre class="btn active" value="ITtUs0fKmPM">Test song3</pre><br>
+                    <pre class="btn active" value="ITtUs0fKmPM">Test song3</pre><br>
+                    <pre class="btn active" value="ITtUs0fKmPM">Test song3</pre><br>
+                    <pre class="btn active" value="ITtUs0fKmPM">Test song3</pre><br>
+                    <pre class="btn active" value="ITtUs0fKmPM">Test song3</pre><br>
+                    <pre class="btn active" value="ITtUs0fKmPM">Test song3</pre><br>
+                    <pre class="btn active" value="ITtUs0fKmPM">Test song3</pre><br>
+                    <pre class="btn active" value="ITtUs0fKmPM">Test song3</pre><br>
+                    <pre class="btn active" value="ITtUs0fKmPM">Test song3</pre><br>
+                    <pre class="btn active" value="ITtUs0fKmPM">Test song3</pre><br>
+                    <pre class="btn active" value="ITtUs0fKmPM">Test song3</pre><br>
+                    <pre class="btn active" value="ITtUs0fKmPM">Test song3</pre><br>
+                    <pre class="btn active" value="ITtUs0fKmPM">Test song3</pre><br>
+                    <pre class="btn active" value="ITtUs0fKmPM">Test song3</pre><br>
+                    <pre class="btn active" value="ITtUs0fKmPM">Test song3</pre><br>
+                </div>
+            </div>
+        </div>
+
+        <script
+            src="https://code.jquery.com/jquery-3.4.1.min.js"
+            integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+            crossorigin="anonymous"></script>
+        <script src = "https://www.youtube.com/iframe_api"></script>
+        <script>
+            function AudioPlayer() {
+                this.timeTxt = $('#player_time');
+                this.btnPlayPause = $('#player_playpause');
+                this.btnStop = $('#player_stop');
+                this.btnRew = $('#player_rew');
+                this.btnFfw = $('#player_ffw');
+            }
+
+            AudioPlayer.prototype.loaded = function() {
+                this.btnPlayPause.addClass('active');
+            }
+
+            var player;
+            function onYouTubeIframeAPIReady() {
+                player = new YT.Player('music-player', {
+                    videoId: 'ItAXIBzMxn8',
+                    events: {
+                        'onReady': onPlayerReady,
+                        'onStateChange': onPlayerStateChange
+                    }
+                });
+            }
+            function onPlayerReady(event) {
+                event.target.playVideo();
+            }
+            function onPlayerStateChange(event) {
+                if (event.data == YT.PlayerState.ENDED) {
+                    player.loadVideoById("MM00yG5NHtY", 0, "large")
+                }
+            }
+        </script>
+    </body>
+</html>
