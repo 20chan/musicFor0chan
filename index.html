@@ -10,41 +10,43 @@
         <div class="container">
             <div class="oneliner">
                 <div class="playerControls">
-                    <div id="music-player" style="display:none"></div>
-                    <pre class="grey" id="player_time">--:--:--</pre>
-                    <br>
-                    <pre class="grey btn active" id="player_playpause">[PLAY]</pre>
-                    <pre class="grey btn active" id="player_stop">[STOP]</pre>
-                    <pre class="grey btn active" id="player_rew">[-30s]</pre>
-                    <pre class="grey btn active selected" id="player_ffw">[+30s]</pre>
+                    <div class="time">
+                        <pre id="currentTime">--:--:--</pre>
+                        <pre>/</pre>
+                        <pre id="durationTime">--:--:--</pre>
+                    </div>
+                    <pre class="btn active" id="player_playpause">[PLAY]</pre>
+                    <pre class="btn active" id="player_stop">[STOP]</pre>
+                    <pre class="btn active" id="player_rew">[-30s]</pre>
+                    <pre class="btn active" id="player_ffw">[+30s]</pre>
                 </div>
             </div>
-                <div class="musics multi-column">
-                    <pre class="btn active" value="LV6fB1zo1Fs">Test song1</pre><br>
-                    <pre class="btn active" value="oitBJxR9UUE">Test song2</pre><br>
-                    <pre class="btn active" value="ITtUs0fKmPM">Test song3</pre><br>
-                    <pre class="btn active" value="ITtUs0fKmPM">Test song3</pre><br>
-                    <pre class="btn active" value="ITtUs0fKmPM">Test song3</pre><br>
-                    <pre class="btn active" value="ITtUs0fKmPM">Test song3</pre><br>
-                    <pre class="btn active" value="ITtUs0fKmPM">Test song3</pre><br>
-                    <pre class="btn active" value="ITtUs0fKmPM">Test song3</pre><br>
-                    <pre class="btn active" value="ITtUs0fKmPM">Test song3</pre><br>
-                    <pre class="btn active" value="ITtUs0fKmPM">Test song3</pre><br>
-                    <pre class="btn active" value="ITtUs0fKmPM">Test song3</pre><br>
-                    <pre class="btn active" value="ITtUs0fKmPM">Test song3</pre><br>
-                    <pre class="btn active" value="ITtUs0fKmPM">Test song3</pre><br>
-                    <pre class="btn active" value="ITtUs0fKmPM">Test song3</pre><br>
-                    <pre class="btn active" value="ITtUs0fKmPM">Test song3</pre><br>
-                    <pre class="btn active" value="ITtUs0fKmPM">Test song3</pre><br>
-                    <pre class="btn active" value="ITtUs0fKmPM">Test song3</pre><br>
-                    <pre class="btn active" value="ITtUs0fKmPM">Test song3</pre><br>
-                    <pre class="btn active" value="ITtUs0fKmPM">Test song3</pre><br>
-                    <pre class="btn active" value="ITtUs0fKmPM">Test song3</pre><br>
-                    <pre class="btn active" value="ITtUs0fKmPM">Test song3</pre><br>
-                    <pre class="btn active" value="ITtUs0fKmPM">Test song3</pre><br>
-                    <pre class="btn active" value="ITtUs0fKmPM">Test song3</pre><br>
-                </div>
+            <div class="musics multi-column">
+                <pre class="btn active" value="LV6fB1zo1Fs">Test song1</pre><br>
+                <pre class="btn active" value="oitBJxR9UUE">Test song2</pre><br>
+                <pre class="btn active" value="ITtUs0fKmPM">Test song3</pre><br>
+                <pre class="btn active" value="ITtUs0fKmPM">Test song3</pre><br>
+                <pre class="btn active" value="ITtUs0fKmPM">Test song3</pre><br>
+                <pre class="btn active" value="ITtUs0fKmPM">Test song3</pre><br>
+                <pre class="btn active" value="ITtUs0fKmPM">Test song3</pre><br>
+                <pre class="btn active" value="ITtUs0fKmPM">Test song3</pre><br>
+                <pre class="btn active" value="ITtUs0fKmPM">Test song3</pre><br>
+                <pre class="btn active" value="ITtUs0fKmPM">Test song3</pre><br>
+                <pre class="btn active" value="ITtUs0fKmPM">Test song3</pre><br>
+                <pre class="btn active" value="ITtUs0fKmPM">Test song3</pre><br>
+                <pre class="btn active" value="ITtUs0fKmPM">Test song3</pre><br>
+                <pre class="btn active" value="ITtUs0fKmPM">Test song3</pre><br>
+                <pre class="btn active" value="ITtUs0fKmPM">Test song3</pre><br>
+                <pre class="btn active" value="ITtUs0fKmPM">Test song3</pre><br>
+                <pre class="btn active" value="ITtUs0fKmPM">Test song3</pre><br>
+                <pre class="btn active" value="ITtUs0fKmPM">Test song3</pre><br>
+                <pre class="btn active" value="ITtUs0fKmPM">Test song3</pre><br>
+                <pre class="btn active" value="ITtUs0fKmPM">Test song3</pre><br>
+                <pre class="btn active" value="ITtUs0fKmPM">Test song3</pre><br>
+                <pre class="btn active" value="ITtUs0fKmPM">Test song3</pre><br>
+                <pre class="btn active" value="ITtUs0fKmPM">Test song3</pre><br>
             </div>
+            <div id="music-player" style="display:none"></div>
         </div>
 
         <script
@@ -53,17 +55,48 @@
             crossorigin="anonymous"></script>
         <script src = "https://www.youtube.com/iframe_api"></script>
         <script>
-            function AudioPlayer() {
-                this.timeTxt = $('#player_time');
-                this.btnPlayPause = $('#player_playpause');
-                this.btnStop = $('#player_stop');
-                this.btnRew = $('#player_rew');
-                this.btnFfw = $('#player_ffw');
+            String.prototype.toHHMMSS = function() {
+                var sec_num = parseInt(this, 10);
+                var hours   = Math.floor(sec_num / 3600);
+                var minutes = Math.floor((sec_num - (hours * 3600)) / 60);
+                var seconds = sec_num - (hours * 3600) - (minutes * 60);
+                if (hours   < 10) {hours   = "0"+hours;}
+                if (minutes < 10) {minutes = "0"+minutes;}
+                if (seconds < 10) {seconds = "0"+seconds;}
+                var time    = hours+':'+minutes+':'+seconds;
+                return time;
             }
+            var currentTimeTxt = $('#currentTime');
+            var durationTimeTxt = $('#durationTime');
+            var btnPlayPause = $('#player_playpause');
+            var btnStop = $('#player_stop');
+            var btnRew = $('#player_rew');
+            var btnFfw = $('#player_ffw');
 
-            AudioPlayer.prototype.loaded = function() {
-                this.btnPlayPause.addClass('active');
-            }
+            btnPlayPause.click((event) => {
+                var state = player.getPlayerState();
+                if (state == 1) {
+                    player.pauseVideo();
+                    btnPlayPause.html("[PLAY]");
+                }
+                else {
+                    player.playVideo();
+                    btnPlayPause.html("[PAUSE]");
+                }
+            });
+
+            btnStop.click((event) => {
+                player.stopVideo();
+                btnPlayPause.html("[PLAY]");
+            });
+
+            btnRew.click((event) => {
+                player.seekTo(player.getCurrentTime() - 30, true);
+            });
+
+            btnFfw.click((event) => {
+                player.seekTo(player.getCurrentTime() + 30, true);
+            });
 
             var player;
             function onYouTubeIframeAPIReady() {
@@ -76,13 +109,18 @@
                 });
             }
             function onPlayerReady(event) {
-                event.target.playVideo();
+                // event.target.playVideo();
             }
             function onPlayerStateChange(event) {
                 if (event.data == YT.PlayerState.ENDED) {
-                    player.loadVideoById("MM00yG5NHtY", 0, "large")
+                    player.loadVideoById("MM00yG5NHtY", 0, "large");
                 }
             }
+
+            setInterval(() => {
+                currentTimeTxt.html(player.getCurrentTime().toString().toHHMMSS());
+                durationTimeTxt.html(player.getDuration().toString().toHHMMSS());
+            }, 100);
         </script>
     </body>
 </html>

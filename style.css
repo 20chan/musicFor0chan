@@ -1,21 +1,27 @@
-.grey {
-    color: #999999;
+*, *::after, *::before {
+	-webkit-user-select: none;
+	-webkit-user-drag: none;
+    -webkit-app-region: no-drag;
+    -moz-user-select: none;    
+    user-select: none;
+	cursor: default;
 }
 
 body {
     margin: 30px;
-    line-height: 18px;
+    line-height: 20px;
     background: #29283b;
 }
 
 body pre {
-    font-size: 13px;
+    font-size: 16px;
     font-family: 'Iosevka SS04 Web';
 }
 
 .oneliner pre {
     display: inline-block;
     overflow: hidden;
+    margin: 15px auto;
 }
 
 .container {
@@ -32,6 +38,19 @@ body pre {
     cursor: pointer;
 }
 
+.playerControls .time pre {
+    font-size: 20px;
+    color: #b3b0d6;
+}
+
+.playerControls #currentTime {
+    color: #fdd877;
+}
+
+.playerControls #durationTime {
+    color: #fdd877;
+}
+
 .playerControls .btn.active:hover,
 .playerControls .btn.selected {
     background-color: #ef6487;
@@ -44,7 +63,7 @@ body pre {
 
 .musics .btn {
     display: inline;
-    line-height: 18px;
+    line-height: 20px;
 }
 
 .musics .btn.active {
