@@ -72,22 +72,23 @@
             var btnStop = $('#player_stop');
             var btnRew = $('#player_rew');
             var btnFfw = $('#player_ffw');
+            var playing = false;
 
             btnPlayPause.click((event) => {
-                var state = player.getPlayerState();
-                if (state == 1) {
+                if (playing) {
                     player.pauseVideo();
-                    btnPlayPause.html("[PLAY]");
                 }
                 else {
                     player.playVideo();
-                    btnPlayPause.html("[PAUSE]");
                 }
+                playing = !playing;
+                changePlayPauseText();
             });
 
             btnStop.click((event) => {
                 player.stopVideo();
-                btnPlayPause.html("[PLAY]");
+                playing = false;
+                changePlayPauseText();
             });
 
             btnRew.click((event) => {
@@ -97,6 +98,20 @@
             btnFfw.click((event) => {
                 player.seekTo(player.getCurrentTime() + 30, true);
             });
+
+            function musicPlayer(m) {
+                return function() {
+                    player.loadVideoById(m.getAttribute("value"), 0, "large");
+                    playing = true;
+                    changePlayPauseText();
+                }
+            }
+
+            var musics = document.querySelectorAll('.musics > pre');
+            for (var i = 0; i < musics.length; i++) {
+                var m = musics[i];
+                m.addEventListener("click", musicPlayer(m));
+            }
 
             var player;
             function onYouTubeIframeAPIReady() {
@@ -112,9 +127,10 @@
                 // event.target.playVideo();
             }
             function onPlayerStateChange(event) {
-                if (event.data == YT.PlayerState.ENDED) {
-                    player.loadVideoById("MM00yG5NHtY", 0, "large");
-                }
+            }
+
+            function changePlayPauseText() {
+                btnPlayPause.html(playing ? "[PAUSE]" : "[PLAY]");
             }
 
             setInterval(() => {

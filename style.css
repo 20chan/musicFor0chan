@@ -38,6 +38,11 @@ body pre {
     cursor: pointer;
 }
 
+.playerControls .time,
+.playerControls .time pre {
+    /* cursor: w-resize; */
+}
+
 .playerControls .time pre {
     font-size: 20px;
     color: #b3b0d6;
